@@ -35,7 +35,7 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 
   diceDOM.src = "dice-" + dice + ".png";
 
-  // 3 - Update the round score only if the rolled number is not 1
+  // 3 - Update the round score only if the rolled number is not 1 and 1
 
   if (dice > 1) {
     // Add the score

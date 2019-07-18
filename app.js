@@ -56,9 +56,12 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     scores[activePlayer];
 
   // See if the player won
-
-  // Next Player
-  nextPlayer();
+  if (scores[activePlayer] >= 10) {
+    document.getElementById("name-" + activePlayer).textContent = "WINNER!";
+  } else {
+    // Next Player
+    nextPlayer();
+  }
 });
 
 // Next Player

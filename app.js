@@ -42,14 +42,34 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     roundScore += dice;
     document.getElementById("current-" + activePlayer).textContent = roundScore;
   } else {
-    // change the active player
-    activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
-    roundScore = 0;
-
-    document.getElementById("current-0").textContent = "0";
-    document.getElementById("current-1").textContent = "0";
-
-    document.querySelector(".player-0-panel").classList.toggle("active");
-    document.querySelector(".player-1-panel").classList.toggle("active");
+    // Next Player
+    nextPlayer();
   }
 });
+
+document.querySelector(".btn-hold").addEventListener("click", function() {
+  // Add current score to the global scores
+  scores[activePlayer] += roundScore;
+
+  // Display in the UI
+  document.getElementById("score-" + activePlayer).textContent =
+    scores[activePlayer];
+
+  // See if the player won
+
+  // Next Player
+  nextPlayer();
+});
+
+// Next Player
+function nextPlayer() {
+  // change the active player
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+  roundScore = 0;
+
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+
+  document.querySelector(".player-0-panel").classList.toggle("active");
+  document.querySelector(".player-1-panel").classList.toggle("active");
+}

@@ -18,7 +18,8 @@ function init() {
   }
 
   // hiding the dice at the start
-  document.querySelector(".dice").style.display = "none";
+  document.getElementById("dice-1").style.display = "none";
+  document.getElementById("dice-2").style.display = "none";
 
   // set all values to 0
   document.getElementById("score-0").textContent = "0";
@@ -40,13 +41,15 @@ init();
 document.querySelector(".btn-roll").addEventListener("click", function() {
   if (gamePlaying) {
     // 1 - Random Number
-    var dice = Math.floor(Math.random() * 6) + 1;
+    var dice1 = Math.floor(Math.random() * 6) + 1;
+    var dice2 = Math.floor(Math.random() * 6) + 1;
 
     // 2 - Display the Resut
-    var diceDOM = document.querySelector(".dice");
-    diceDOM.style.display = "block";
+    document.getElementById("dice-1").style.display = "block";
+    document.getElementById("dice-2").style.display = "block";
 
-    diceDOM.src = "dice-" + dice + ".png";
+    document.getElementById("dice-1").src = "dice-" + dice1 + ".png";
+    document.getElementById("dice-2").src = "dice-" + dice2 + ".png";
 
     // 3 - Update the round score only if the rolled number is not 1 and 1
 
@@ -90,7 +93,8 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     // See if the player won
     if (scores[activePlayer] >= winningScore) {
       document.getElementById("name-" + activePlayer).textContent = "WINNER!";
-      document.querySelector(".dice").style.display = "none";
+      document.getElementById("dice-1").style.display = "none";
+      document.getElementById("dice-2").style.display = "none";
       document
         .querySelector(".player-" + activePlayer + "-panel")
         .classList.add("winner");
@@ -117,6 +121,9 @@ function nextPlayer() {
 
   document.querySelector(".player-0-panel").classList.toggle("active");
   document.querySelector(".player-1-panel").classList.toggle("active");
+
+  document.getElementById("dice-1").style.display = "none";
+  document.getElementById("dice-2").style.display = "none";
 }
 
 // New Button Funtion

@@ -17,6 +17,14 @@ function init() {
   roundScore = 0;
   activePlayer = 0;
   gamePlaying = true;
+  var person0 = prompt("Player 1 enter your name");
+  if (person0 == null || person0 == "") {
+    person0 = "Player 1";
+  }
+  var person1 = prompt("Player 2 enter your name");
+  if (person1 == null || person1 == "") {
+    person1 = "Player 2";
+  }
 
   // hiding the dice at the start
   document.querySelector(".dice").style.display = "none";
@@ -26,8 +34,8 @@ function init() {
   document.getElementById("score-1").textContent = "0";
   document.getElementById("current-0").textContent = "0";
   document.getElementById("current-1").textContent = "0";
-  document.getElementById("name-0").textContent = "Player 1";
-  document.getElementById("name-1").textContent = "Player 2";
+  document.getElementById("name-0").textContent = person0;
+  document.getElementById("name-1").textContent = person1;
   document.querySelector(".player-0-panel").classList.remove("winner");
   document.querySelector(".player-1-panel").classList.remove("winner");
   document.querySelector(".player-0-panel").classList.remove("active");

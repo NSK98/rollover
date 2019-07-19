@@ -11,6 +11,8 @@ GAME RULES:
 
 var scores, roundScore, activePlayer, gamePlaying;
 
+var lastDice;
+
 // Initialise the Game
 function init() {
   scores = [0, 0];
@@ -59,7 +61,12 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 
     // 3 - Update the round score only if the rolled number is not 1 and 1
 
-    if (dice > 1) {
+    if (dice === 6 && lastDice === 6) {
+      // active player score resets
+      scores[activePlayer] = 0;
+      document.getElementById("score-" + activePlayer).textContent = "0";
+      nextPlayer();
+    } else if (dice > 1) {
       // Add the score
       roundScore += dice;
       document.getElementById(
@@ -69,6 +76,8 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
       // Next Player
       nextPlayer();
     }
+
+    lastDice = dice;
   }
 });
 
@@ -81,8 +90,17 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     document.getElementById("score-" + activePlayer).textContent =
       scores[activePlayer];
 
+    var input = document.querySelector(".final-score").value;
+    var winningScore;
+
+    if (input) {
+      winningScore = input;
+    } else {
+      winningScore = 100;
+    }
+
     // See if the player won
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= winningScore) {
       document.getElementById("name-" + activePlayer).textContent = "WINNER!";
       document.querySelector(".dice").style.display = "none";
       document

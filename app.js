@@ -90,13 +90,13 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     document.getElementById("score-" + activePlayer).textContent =
       scores[activePlayer];
 
-    var input = document.querySelector(".final-score").value;
-    var winningScore;
+    var input = parseInt(document.querySelector(".final-score").value);
+    var winningScore = 100;
 
-    if (input) {
-      winningScore = input;
+    if (isNaN(input)) {
+      alert("Please input a Number!");
     } else {
-      winningScore = 100;
+      winningScore = input;
     }
 
     // See if the player won

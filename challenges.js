@@ -72,13 +72,9 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     document.getElementById("score-" + activePlayer).textContent =
       scores[activePlayer];
 
-    var input = document.querySelector(".final-score").value;
-    var winningScore;
-
-    if (input) {
-      winningScore = input;
-    } else {
-      winningScore = 100;
+    var winningScore = parseInt(document.querySelector(".final-score").value);
+    if (isNaN(winningScore)) {
+      alert("Please input a Winning Score!");
     }
 
     // See if the player won
@@ -112,9 +108,6 @@ function nextPlayer() {
 
   document.querySelector(".player-0-panel").classList.toggle("active");
   document.querySelector(".player-1-panel").classList.toggle("active");
-
-  document.getElementById("dice-1").style.display = "none";
-  document.getElementById("dice-2").style.display = "none";
 }
 
 // New Button Funtion
